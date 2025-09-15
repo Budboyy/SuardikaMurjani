@@ -121,26 +121,28 @@
         top: 0;
         z-index: 50;
         background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(8px);
-        box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
       }
       .inner {
         display: flex;
-        gap: 8px;
+        gap: 6px;                /* jarak antar item lebih kecil */
         flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
-        padding: 10px 8px;
+        padding: 6px 8px;        /* lebih sempit vertikal & horizontal */
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
       nav.sticky a {
-        padding: 8px 12px;
+        padding: 6px 10px;       /* padding lebih kecil */
         border-radius: 999px;
         background: #fff;
         border: 1px solid #eee;
         color: #333;
-        font-size: 0.95rem;
+        font-size: 0.9rem;       /* sedikit lebih kecil */
+        white-space: nowrap;     /* jangan bungkus */
+        line-height: 1;
       }
       section {
         padding: 36px 0; /* sebelumnya 56px */
