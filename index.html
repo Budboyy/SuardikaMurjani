@@ -796,6 +796,68 @@
           padding: 0 12px;
         }
       }
+
+      /* Guestbook: card container + scrollable list */
+#guestbookEntries {
+  max-height: 360px;               /* ketinggian maksimum area ucapan */
+  overflow-y: auto;                /* aktifkan scroll vertikal saat overflow */
+  padding: 14px;                   /* jarak dalam */
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+  display: block;
+}
+
+/* styling tiap ucapan (card) */
+#guestbookEntries .entry {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #eee;
+  word-break: break-word;
+}
+
+/* beri jarak + garis pemisah antar ucapan (garis di bawah setiap entry kecuali terakhir) */
+#guestbookEntries .entry:not(:last-child) {
+  margin-bottom: 12px;
+  padding-bottom: 12px; /* beri ruang untuk garis */
+  border-bottom: 1px dashed #e6e6e6;
+}
+
+/* head / meta styling di dalam entry */
+#guestbookEntries .entry .entry-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+#guestbookEntries .entry .name {
+  font-weight: 700;
+  color: var(--ink);
+}
+#guestbookEntries .entry .pangkat {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* pesan dan waktu */
+#guestbookEntries .entry .entry-msg {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+#guestbookEntries .entry .entry-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* responsif: kurangi tinggi pada layar kecil */
+@media (max-width: 720px) {
+  #guestbookEntries { max-height: 260px; padding: 12px; }
+  #guestbookEntries .entry { padding: 10px 12px; }
+}
     </style>
   </head>
   <body>
@@ -1178,6 +1240,99 @@
           padding: 8px 10px;
         }
       }
+
+      /* Thank You section (above footer) */
+      #thankyou {
+        padding: 32px 0;
+        color: #888;
+        text-align: center;
+      }
+      .thank-title {
+        font-family: "Great Vibes", cursive;
+        font-weight: 400;
+        font-size: clamp(2rem, 5vw, 2.4rem);
+        text-align: center;
+        margin: 6px 0 8px;
+        color: var(--ink);
+      }
+      .thank-text {
+        color: var(--muted);
+        text-align: center;
+        max-width: 860px;
+        margin: 0.25rem auto 1.25rem;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      @media (max-width: 420px) {
+        .thank-title {
+          font-size: 1.9rem;
+        }
+        .thank-text {
+          padding: 0 12px;
+        }
+      }
+
+      /* Guestbook: card container + scrollable list */
+#guestbookEntries {
+  max-height: 360px;               /* ketinggian maksimum area ucapan */
+  overflow-y: auto;                /* aktifkan scroll vertikal saat overflow */
+  padding: 14px;                   /* jarak dalam */
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+  display: block;
+}
+
+/* styling tiap ucapan (card) */
+#guestbookEntries .entry {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #eee;
+  word-break: break-word;
+}
+
+/* beri jarak + garis pemisah antar ucapan (garis di bawah setiap entry kecuali terakhir) */
+#guestbookEntries .entry:not(:last-child) {
+  margin-bottom: 12px;
+  padding-bottom: 12px; /* beri ruang untuk garis */
+  border-bottom: 1px dashed #e6e6e6;
+}
+
+/* head / meta styling di dalam entry */
+#guestbookEntries .entry .entry-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+#guestbookEntries .entry .name {
+  font-weight: 700;
+  color: var(--ink);
+}
+#guestbookEntries .entry .pangkat {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* pesan dan waktu */
+#guestbookEntries .entry .entry-msg {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+#guestbookEntries .entry .entry-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* responsif: kurangi tinggi pada layar kecil */
+@media (max-width: 720px) {
+  #guestbookEntries { max-height: 260px; padding: 12px; }
+  #guestbookEntries .entry { padding: 10px 12px; }
+}
     </style>
 
     <script>
@@ -1508,9 +1663,6 @@
               const body = new URLSearchParams({ nama, konfirmasi, pesan });
               const res = await fetch(API, {
                 method: "POST",
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded",
-                },
                 body: body.toString(),
               });
               if (!res.ok) throw new Error("Gagal menyimpan");
