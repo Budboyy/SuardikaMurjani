@@ -1796,6 +1796,31 @@
           document.querySelector(".guest-name");
         if (guestEl) guestEl.textContent = guestName;
       }
+
+  // Target waktu acara (contoh)
+  const targetDate = new Date("2025-09-17T10:00:00").getTime();
+
+  const timer = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      clearInterval(timer);
+
+      // Hapus cover setelah waktu habis
+      const cover = document.getElementById("coverUndangan");
+      if (cover) {
+        cover.style.display = "none"; 
+      }
+
+      // Hapus class cover-open dari body
+      document.body.classList.remove("cover-open");
+    }
+  }, 1000);
+    
+
+      
     </script>
   </body>
 </html>
+
