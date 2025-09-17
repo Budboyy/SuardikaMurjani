@@ -558,6 +558,13 @@
         transition: margin-top 0.28s ease;
       }
 
+      #coverUndangan.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      
+
       @media (max-width: 720px) {
         #coverUndangan .cover-content {
           margin-top: 220px; /* lebih turun di mobile */
@@ -1754,7 +1761,10 @@
         // if cover exists but button removed, allow closing cover on background click or Esc
         cover.addEventListener("click", (e) => {
           if (e.target === cover) {
-            cover.style.opacity = "0";
+            // Ganti `cover.style.display = "none";` dengan ini:
+cover.classList.add("fade-out");
+setTimeout(() => cover.remove(), 700); // benar-benar hilang setelah animasi
+
             setTimeout(() => (cover.style.display = "none"), 500);
             document.body.classList.remove("cover-open");
           }
@@ -1823,4 +1833,5 @@
     </script>
   </body>
 </html>
+
 
